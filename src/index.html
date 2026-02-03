@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <link rel="stylesheet" href="./css/styles.css" />
+    <title>Image Search</title>
   </head>
+
   <body>
     <header class="header">
       <div class="container">
@@ -16,20 +16,30 @@
               <use href="./img/logo.svg"></use>
             </svg>
           </a>
-          <ul class="nav-list">
-            <li class="nav-item">
-              <a class="nav-link {=$highlight-act}" href="./pixabay-api.html">Timer</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {=$highlight-curr}" href="./render-functions.html">Snackbar</a>
-            </li>
-          </ul>
         </nav>
       </div>
     </header>
-    <main>
 
+    <main class="container">
+      <form class="form" autocomplete="off">
+        <label class="form-label">
+          <input
+            type="text"
+            name="search-text"
+            placeholder="Search images..."
+            required
+          />
+        </label>
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="loader-wrap is-hidden" aria-live="polite">
+        <span class="loader"></span>
+      </div>
+
+      <ul class="gallery"></ul>
     </main>
-    <script type="module" src="./main.js"></script>
+
+    <script type="module" src="/main.js"></script>
   </body>
 </html>
