@@ -13,7 +13,6 @@ const refs = {
   seconds: document.querySelector("[data-seconds]"),
 };
 
-// Safety: if markup is wrong, fail loudly instead of silently “not working”
 if (
   !refs.input ||
   !refs.startBtn ||
@@ -28,10 +27,8 @@ if (
 let userSelectedDate = null;
 let timerId = null;
 
-// Start disabled on first load
 refs.startBtn.disabled = true;
 
-// Prevent manual typing (avoids invalid strings like "dfdf")
 refs.input.setAttribute("readonly", "readonly");
 
 flatpickr(refs.input, {
@@ -41,7 +38,6 @@ flatpickr(refs.input, {
   minuteIncrement: 1,
 
   onClose(selectedDates) {
-    // User closed without selecting / invalid input
     if (!selectedDates.length) {
       userSelectedDate = null;
       refs.startBtn.disabled = true;
@@ -76,7 +72,6 @@ function onStart() {
   refs.startBtn.disabled = true;
   refs.input.disabled = true;
 
-  // Update immediately so user sees countdown right away
   tick();
 
   timerId = setInterval(tick, 1000);
@@ -91,7 +86,6 @@ function tick() {
 
     renderTime({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-    // After stop: input active again, Start remains disabled until new valid date chosen
     refs.input.disabled = false;
     refs.startBtn.disabled = true;
     userSelectedDate = null;
@@ -103,7 +97,6 @@ function tick() {
 }
 
 function renderTime({ days, hours, minutes, seconds }) {
-  // Days can be more than 2 digits → no padding
   refs.days.textContent = String(days);
   refs.hours.textContent = addLeadingZero(hours);
   refs.minutes.textContent = addLeadingZero(minutes);
